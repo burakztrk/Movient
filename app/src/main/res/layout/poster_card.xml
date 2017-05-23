@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    app:cardUseCompatPadding="true"
+    app:cardElevation="3dp"
+    app:cardMaxElevation="3dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/POSTERCARD_IMAGEVIEW_THUMBNAIL"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/cover1"/>
+
+        <TextView
+            android:id="@+id/POSTERCARD_TEXTVIEW_TITLE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/POSTERCARD_IMAGEVIEW_THUMBNAIL"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/primary_text"
+            android:textSize="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/POSTERCARD_TEXTVIEW_TITLE"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:id="@+id/POSTERCARD_TEXTVIEW_YEAR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="(2017)"
+                android:textColor="@color/secondary_text"
+                android:textSize="10dp"/>
+
+            <TextView
+                android:id="@+id/POSTERCARD_TEXTVIEW_COUNT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="8.2/10"
+                android:gravity="right"
+                android:textColor="@color/secondary_text"
+                android:textSize="10dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

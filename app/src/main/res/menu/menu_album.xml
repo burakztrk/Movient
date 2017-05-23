@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item
+        android:id="@+id/POSTER_MENU_ADDFAV"
+        android:orderInCategory="100"
+        android:title="favourite"/>
+
+    <item
+        android:id="@+id/POSTER_MENU_NEXTPLAY"
+        android:orderInCategory="101"
+        android:title="next"/>
+</menu>

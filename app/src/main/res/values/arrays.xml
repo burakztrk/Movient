@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="quality">
+        <item>All</item>
+        <item>720p</item>
+        <item>1080p</item>
+        <item>3D</item>
+    </string-array>
+
+    <string-array name="genre">
+        <item>All</item>
+        <item>Action</item>
+        <item>Adventure</item>
+        <item>Animation</item>
+        <item>Biography</item>
+        <item>Comedy</item>
+        <item>Crime</item>
+        <item>Documentary</item>
+        <item>Drama</item>
+        <item>Family</item>
+        <item>Fantasy</item>
+        <item>History</item>
+        <item>Horror</item>
+        <item>Music</item>
+        <item>Mystery</item>
+        <item>Romance</item>
+        <item>Sci-Fi</item>
+        <item>Sport</item>
+        <item>Thriller</item>
+        <item>War</item>
+        <item>Western</item>
+    </string-array>
+
+    <string-array name="raiting">
+        <item>All</item>
+        <item>9+</item>
+        <item>8+</item>
+        <item>7+</item>
+        <item>6+</item>
+        <item>5+</item>
+    </string-array>
+
+    <string-array name="sortby">
+        <item>Rating</item>
+        <item>Latest</item>
+        <item>Title</item>
+        <item>Year</item>
+        <item>Download</item>
+    </string-array>
+
+
+</resources>

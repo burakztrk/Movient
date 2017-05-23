@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    style="@style/cardview_style"
+    card_view:cardCornerRadius="@dimen/cardview_corner_radius"
+    card_view:cardElevation="0dp">
+<!--    card_view:cardBackgroundColor="#80f1f8e9" transparent-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/cardview_padding">
+
+
+        <ImageView
+            android:id="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_POSTER"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/cover3"/>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/moviedetail_info_cover_linearlayout_marginbottom"
+            android:layout_toEndOf="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_POSTER"
+            android:layout_toRightOf="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_POSTER"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_YEARICON"
+                android:layout_width="@dimen/moviedetail_info_icon_size"
+                android:layout_height="@dimen/moviedetail_info_icon_size"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_date"
+                android:tint="@color/icon_color"/>
+
+            <TextView
+                android:id="@+id/MOVIEDETAIL_INFO_TEXTVIEW_YEAR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/moviedetail_info_textview_marginleft"
+                android:text="2013"
+                style="@style/text_fontstyle"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_imdb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/linearLayout_year"
+            android:layout_toEndOf="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_POSTER"
+            android:layout_toRightOf="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_POSTER"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_IMDBICON"
+                android:layout_width="@dimen/moviedetail_info_icon_size"
+                android:layout_height="@dimen/moviedetail_info_icon_size"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_imdb"
+                android:tint="@color/icon_color"/>
+
+            <TextView
+                android:id="@+id/MOVIEDETAIL_INFO_TEXTVIEW_IMDB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/moviedetail_info_textview_marginleft"
+                android:text="7.2/10"
+                style="@style/text_fontstyle"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout_runtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout_imdb"
+            android:layout_toEndOf="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_POSTER"
+            android:layout_toRightOf="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_POSTER"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_RUNTIMEICON"
+                android:layout_width="@dimen/moviedetail_info_icon_size"
+                android:layout_height="@dimen/moviedetail_info_icon_size"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_timer"
+                android:tint="@color/icon_color"/>
+
+            <TextView
+                android:id="@+id/MOVIEDETAIL_INFO_TEXTVIEW_RUNTIME"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/moviedetail_info_textview_marginleft"
+                android:text="132 Min"
+                style="@style/text_fontstyle"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout_downloadcount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout_runtime"
+            android:layout_toEndOf="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_POSTER"
+            android:layout_toRightOf="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_POSTER"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_DOWNLOADICON"
+                android:layout_width="@dimen/moviedetail_info_icon_size"
+                android:layout_height="@dimen/moviedetail_info_icon_size"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_download2"
+                android:tint="@color/icon_color"/>
+
+            <TextView
+                android:id="@+id/MOVIEDETAIL_INFO_TEXTVIEW_LANGUAGE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/moviedetail_info_textview_marginleft"
+                android:text="25.455"
+                style="@style/text_fontstyle"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_mpaaraiting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout_downloadcount"
+            android:layout_toEndOf="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_POSTER"
+            android:layout_toRightOf="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_POSTER"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/MOVIEDETAIL_INFO_IMAGEVIEW_MPAARICON"
+                android:layout_width="@dimen/moviedetail_info_icon_size"
+                android:layout_height="@dimen/moviedetail_info_icon_size"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_mpaa"
+                android:tint="@color/icon_color"/>
+
+
+            <TextView
+                android:id="@+id/MOVIEDETAIL_INFO_TEXTVIEW_MPAARAITING"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/moviedetail_info_textview_marginleft"
+                android:text="NC-17"
+                style="@style/text_fontstyle"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

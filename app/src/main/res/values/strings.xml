@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Movient</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="backdrop_title">Latest YIFY Movies</string>
+    <string name="backdrop_subtitle">Top 20 Movies</string>
+
+    <string name="search_term">Search Term:</string>
+    <string name="movie_title_actor">Movie Title,Actor,Director,IMDb Code</string>
+    <string name="quality">Quality:</string>
+    <string name="genre">Genre:</string>
+    <string name="raiting">Raiting:</string>
+    <string name="sort_by">Sort By:</string>
+    <string name="search">SEARCH</string>
+    <string name="notEmptyMessage">Not Empty</string>
+
+
+    <string name="text_content">Across The Universe is a fictional love story set in the 1960s amid the turbulent years of anti-war protest, the struggle for free speech and civil rights, mind exploration and rock and roll. At once gritty, whimsical and highly theatrical, the story moves from high schools and universities in Massachusetts, Princeton and Ohio to the Lower East Side of Manhattan, the Detroit riots, Vietnam and the dockyards of Liverpool. A combination of live action and animation, the film is paired with many songs by The Beatles that defined the time.</string>
+    <string name="font_family">sans-serif-condensed</string>
+
+
+</resources>

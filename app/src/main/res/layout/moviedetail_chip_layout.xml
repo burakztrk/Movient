@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/cardview_style"
+    card_view:cardCornerRadius="@dimen/cardview_corner_radius"
+    card_view:cardElevation="@dimen/cardview_elevation">
+
+    <LinearLayout
+        android:id="@+id/MOVIEDETAIL_LAYOUT_CHIPS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/cardview_padding">
+
+        <com.robertlevonyan.views.chip.Chip
+            android:id="@+id/MOVIEDETAIL_CHIP_DOWNLOAD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            app:backgroundColor="@color/colorPrimary"
+            app:textColor="@color/white"
+            app:chipIcon="@drawable/ic_download2"
+            app:chipText="Torrent"
+            app:hasIcon="true">
+        </com.robertlevonyan.views.chip.Chip>
+        
+        <com.robertlevonyan.views.chip.Chip
+            android:id="@+id/MOVIEDETAIL_CHIP_YTS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            app:backgroundColor="@color/colorPrimaryDark"
+            app:chipIcon="@drawable/ic_movie"
+            app:chipText="Yts.ag"
+            app:hasIcon="true"
+            app:textColor="@color/white">
+        </com.robertlevonyan.views.chip.Chip>
+
+        <com.robertlevonyan.views.chip.Chip
+            android:id="@+id/MOVIEDETAIL_CHIP_IMDB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:backgroundColor="@color/colorPrimaryDark"
+            app:chipIcon="@drawable/ic_web"
+            app:chipText="IMDb"
+            app:hasIcon="true"
+            app:textColor="@color/white">
+        </com.robertlevonyan.views.chip.Chip>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

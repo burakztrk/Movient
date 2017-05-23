@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/horizantalPicker_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/horizantalPicker_padding"
+            android:text="@string/search_term"
+            android:textSize="@dimen/horizantalPicker_textView_fontSize"/>
+
+        <EditText
+            android:id="@+id/ACTIVITYSEARCH_EDITTEXT_SEARCHTEXT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/movie_title_actor"
+            android:inputType="textAutoCorrect"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:nextFocusDown="@+id/SEARCHFRAGMENT_BUTTON_SEARCH"
+            android:textSize="@dimen/horizantalPicker_textView_fontSize"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/horizantalPicker_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/horizantalPicker_padding"
+            android:text="@string/quality"
+            android:textSize="@dimen/horizantalPicker_textView_fontSize"/>
+
+        <com.wefika.horizontalpicker.HorizontalPicker
+            android:id="@+id/ACTIVITYSEARCH_PICKER_QUALITY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:focusable="false"
+
+            android:focusableInTouchMode="false"
+            android:marqueeRepeatLimit="-5"
+
+            android:textColor="@animator/picker_color"
+            android:textSize="@dimen/horizantalPicker_fontSize"
+            app:dividerSize="@dimen/horizantalPicker_dividerSize"
+            app:sideItems="1"
+            app:values="@array/quality"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/horizantalPicker_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/horizantalPicker_padding"
+            android:text="@string/genre"
+            android:textSize="@dimen/horizantalPicker_textView_fontSize"/>
+
+        <com.wefika.horizontalpicker.HorizontalPicker
+            android:id="@+id/ACTIVITYSEARCH_PICKER_GENRE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:focusable="false"
+
+            android:focusableInTouchMode="false"
+            android:marqueeRepeatLimit="-5"
+
+            android:textColor="@animator/picker_color"
+            android:textSize="@dimen/horizantalPicker_fontSize"
+            app:dividerSize="@dimen/horizantalPicker_dividerSize"
+            app:sideItems="1"
+            app:values="@array/genre"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/horizantalPicker_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/horizantalPicker_padding"
+            android:text="@string/raiting"
+            android:textSize="@dimen/horizantalPicker_textView_fontSize"/>
+
+        <com.wefika.horizontalpicker.HorizontalPicker
+            android:id="@+id/ACTIVITYSEARCH_PICKER_RAITING"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:focusable="false"
+
+            android:focusableInTouchMode="false"
+            android:marqueeRepeatLimit="-5"
+
+            android:textColor="@animator/picker_color"
+            android:textSize="@dimen/horizantalPicker_fontSize"
+            app:dividerSize="@dimen/horizantalPicker_dividerSize"
+            app:sideItems="1"
+            app:values="@array/raiting"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/horizantalPicker_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/horizantalPicker_padding"
+            android:text="@string/sort_by"
+            android:textSize="@dimen/horizantalPicker_textView_fontSize"
+            />
+
+        <com.wefika.horizontalpicker.HorizontalPicker
+            android:id="@+id/ACTIVITYSEARCH_PICKER_SORTBY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:marqueeRepeatLimit="-5"
+            android:textColor="@animator/picker_color"
+            android:textSize="@dimen/horizantalPicker_fontSize"
+            app:dividerSize="@dimen/horizantalPicker_dividerSize"
+            app:sideItems="1"
+            app:values="@array/sortby"/>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/SEARCHFRAGMENT_BUTTON_SEARCH"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickSearchButton"
+        android:text="@string/search"
+        android:textSize="@dimen/horizantalPicker_textView_fontSize"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/SEARCHFRAGMENT_TEXTVIEW_RESULT"/>
+</LinearLayout>
