@@ -1,4 +1,4 @@
-package layout;
+package com.ozturkburak.movient;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.ozturkburak.Utils.Util;
-import com.ozturkburak.movient.R;
-import com.ozturkburak.movient.TabPageAdapter;
 import com.ozturkburak.movient.controller.RetrofitClient;
 import com.ozturkburak.movient.model.*;
 import com.ozturkburak.movient.resultlist.*;
@@ -115,7 +113,7 @@ public class Fragment1_List extends Fragment
                 if (count == 0) //Sonuc bos donerse
                 {
                     Toast.makeText(getContext(), "Not Found", Toast.LENGTH_SHORT).show();
-                    TabPageAdapter.setCurrentTab(Util.PAGES.SEARCH);
+                    TabPageAdapter.setCurrentTab(Util.APP_PAGES.SEARCH);
                     return;
                 }
 

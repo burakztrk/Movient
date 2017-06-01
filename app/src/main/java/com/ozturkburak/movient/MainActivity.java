@@ -7,11 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.ozturkburak.movient.controller.IFragmentCommunicator;
-import com.ozturkburak.movient.model.Movie;
 import com.ozturkburak.movient.search.SearchOptions;
 
-import layout.Fragment1_List;
-import layout.Fragment2_Details;
 import com.ozturkburak.Utils.Util.*;
 
 
@@ -50,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements IFragmentCommunic
 
 
     @Override
-    public void sendData(PAGES whichPage, Object obj)
+    public void sendData(APP_PAGES whichPage, Object obj)
     {
         switch (whichPage)
         {
@@ -58,12 +55,6 @@ public class MainActivity extends AppCompatActivity implements IFragmentCommunic
                 Fragment1_List fragment1 = (Fragment1_List) TabPageAdapter.getFragmentbyId(whichPage);
                 fragment1.setQueryData((SearchOptions) obj );
                 TabPageAdapter.setCurrentTab(whichPage);
-                break;
-
-            case MOVIEDETAIL:
-                TabPageAdapter.setCurrentTab(whichPage);
-                Fragment2_Details fragment2 = (Fragment2_Details) TabPageAdapter.getFragmentbyId(whichPage);
-                fragment2.setMovieData( (Movie)obj );
                 break;
 
             default:

@@ -4,10 +4,13 @@ package com.ozturkburak.movient.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Torrent {
+public class Torrent implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     @SerializedName("hash") @Expose private String hash;
     @SerializedName("quality") @Expose private String quality;

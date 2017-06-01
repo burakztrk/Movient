@@ -1,12 +1,15 @@
 
 package com.ozturkburak.movient.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Movie {
+public class Movie implements Serializable
+{
+    private static final long serialVersionUID = 1L;
 
     @SerializedName("id") @Expose private String id;
     @SerializedName("url") @Expose private String url;
@@ -25,10 +28,11 @@ public class Movie {
     @SerializedName("background_image") @Expose private String backgroundImage;
     @SerializedName("small_cover_image") @Expose private String smallCoverImage;
     @SerializedName("medium_cover_image") @Expose private String mediumCoverImage;
+    @SerializedName("large_cover_image") @Expose private String largeCoverImage;
     @SerializedName("cast") @Expose private List<Cast> cast = null;
     @SerializedName("torrents") @Expose private List<Torrent> torrents = null;
 
-
+    public Movie(){}
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
@@ -91,9 +95,9 @@ public class Movie {
 
     public void setDescriptionFull(String descriptionFull) {this.descriptionFull = descriptionFull; }
 
-    public String getYtTrailerLink() {
-        return String.format("https://www.youtube.com/watch?v=%s" , ytTrailerCode);
-    }
+    public String getYtTrailerCode() { return  ytTrailerCode;}
+
+    public String getYtTrailerLink() { return String.format("https://www.youtube.com/watch?v=%s" , ytTrailerCode);}
 
     public void setYtTrailerCode(String ytTrailerCode) {
         this.ytTrailerCode = ytTrailerCode;
@@ -137,6 +141,14 @@ public class Movie {
         this.mediumCoverImage = mediumCoverImage;
     }
 
+    public String getLargeCoverImage() {
+        return largeCoverImage;
+    }
+
+    public void setLargeCoverImage(String largeCoverImage) {
+        this.largeCoverImage= largeCoverImage;
+    }
+
     public List<Cast> getCast() {
         return cast;
     }
@@ -153,6 +165,8 @@ public class Movie {
         this.torrents = torrents;
     }
 
+
+
     public static Movie DemoMovie()
     {
         Movie movieDetail = new Movie();
@@ -166,6 +180,7 @@ public class Movie {
         movieDetail.setYear(2006);
         movieDetail.setRating(6.6f);
         movieDetail.setRuntime(102);
+
 
         List<String> genres = new ArrayList<>();
         genres.add("Action");
@@ -187,5 +202,4 @@ public class Movie {
         return movieDetail;
 
     }
-
 }

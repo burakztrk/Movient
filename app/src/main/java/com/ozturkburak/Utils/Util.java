@@ -1,10 +1,12 @@
 package com.ozturkburak.Utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,18 +22,19 @@ import com.squareup.picasso.Picasso;
 
 public class Util
 {
-    public enum PAGES
+    public enum APP_PAGES
     {
         LIST(0),
         MOVIEDETAIL(1),
         SEARCH(2);
 
         private final int m_value;
-        PAGES(int val) { m_value = val; }
+        APP_PAGES(int val) { m_value = val; }
         public int getValue(){ return m_value; }
 
     }
 
+    public static String MOVIEINFO = "MOVIEINFO";
     private static boolean firstRunning = true;
     private static float ms_displayMetric = 0;
     private static LinearLayout.LayoutParams ms_layoutParams = null;
@@ -132,4 +135,14 @@ public class Util
 
         return ln;
     }
+
+    public static void hideKeyboard(Activity activity)
+    {
+        View view = activity.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
 }

@@ -11,9 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ozturkburak.Utils.Util;
+import com.ozturkburak.Utils.IntentUtils;
 import com.ozturkburak.movient.R;
-import com.ozturkburak.movient.controller.IFragmentCommunicator;
 import com.ozturkburak.movient.controller.RetrofitClient;
 import com.ozturkburak.movient.model.Movie;
 import com.ozturkburak.movient.model.MovieDetailModel;
@@ -85,7 +84,7 @@ public class PosterAdapter extends RecyclerView.Adapter<PosterAdapter.MyViewHold
 
 
         Picasso.with(m_context)
-                .load(movie.getMediumCoverImage())
+                .load(movie.getLargeCoverImage())
                 .into(holder.thumbnail);
 
 
@@ -111,10 +110,8 @@ public class PosterAdapter extends RecyclerView.Adapter<PosterAdapter.MyViewHold
                         Movie responseMovie = response.body().getData().getMovie();
                         Toast.makeText(m_context, responseMovie.getTitleLong() , Toast.LENGTH_SHORT).show();
 
-                        IFragmentCommunicator fragmentCommunicator = (IFragmentCommunicator)m_activity;
-                        fragmentCommunicator.sendData(Util.PAGES.MOVIEDETAIL , movie);
+                        m_activity.startActivity(IntentUtils.movieDetail(m_activity , responseMovie ));
 
-                        //TODO Fragment2 ye yonlendir
                     }
 
                     @Override

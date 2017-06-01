@@ -1,25 +1,19 @@
-package layout;
+package com.ozturkburak.movient;
 
-/*
- * TODO: glide yerine picassoya cevir
- * TODO: Fontlar kucultulecek
- * TODO: SUGGESTIONS SCROLL BAR KALDIR
- * TODO: FILM ADI YAZILMALI MI KALDIRMALI MI
-*/
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.graphics.Palette;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,8 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.florent37.picassopalette.PicassoPalette;
+import com.ozturkburak.Utils.IntentUtils;
 import com.ozturkburak.Utils.Util;
-import com.ozturkburak.movient.R;
 import com.ozturkburak.movient.model.Cast;
 import com.ozturkburak.movient.model.Movie;
 import com.ozturkburak.movient.model.Torrent;
@@ -37,8 +31,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class Fragment2_Details extends Fragment
+public class DetailActivity extends AppCompatActivity
 {
+
     private CollapsingToolbarLayout m_collapsingToolbarLayout = null;
     private Chip m_chipDownload, m_chipYts, m_chipImdb;
     private LinearLayout m_suggestionsLayout, m_genresLayout, m_castLayout;
@@ -49,53 +44,57 @@ public class Fragment2_Details extends Fragment
     private Movie m_movieDetail;
 
 
-
-    public Fragment2_Details() { }
-
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater , ViewGroup container, Bundle savedInstanceState)
+    protected void onCreate(Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment2_detail, container, false);
-    }
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail);
 
+        Intent intent = getIntent();
+        Movie movie = (Movie) intent.getSerializableExtra(Util.MOVIEINFO);
+        m_movieDetail = movie == null ? Movie.DemoMovie() : movie;
 
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
-    {
-        super.onViewCreated(view, savedInstanceState);
         gatherViews();
-
-        if (m_movieDetail == null){ m_movieDetail = Movie.DemoMovie(); }
-
+        collapsingToolbarInit();
         setAllViews(m_movieDetail);
-        Toast.makeText(getContext(), "onCreated", Toast.LENGTH_SHORT).show();
     }
 
 
+    private void collapsingToolbarInit()
+    {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.ACTIVITY_TOOLBAR);
+        setSupportActionBar(toolbar);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        m_collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.ACTIVITY_COLLAPSINGTOOLBAR);
+        m_collapsingToolbarLayout.setTitle(m_movieDetail.getTitle());
+
+        m_collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.collapsedappbar);
+        m_collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.expandedappbar);
+
+    }
 
     private void gatherViews()
     {
-        Activity activity = getActivity();
 
-        m_collapsingToolbarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.ACTIVITY_COLLAPSINGTOOLBAR);
-        m_imageViewBackground = (ImageView) activity.findViewById(R.id.ACTIVITY_COLLAPSINGTOOLBAR_IMAGEVIEW_COVER);
-        m_chipDownload = (Chip) activity.findViewById(R.id.MOVIEDETAIL_CHIP_DOWNLOAD);
-        m_chipImdb = (Chip) activity.findViewById(R.id.MOVIEDETAIL_CHIP_IMDB);
-        m_chipYts = (Chip) activity.findViewById(R.id.MOVIEDETAIL_CHIP_YTS);
-        m_suggestionsLayout = (LinearLayout) activity.findViewById(R.id.MOVIEDETAIL_SUG_LINEARLAYOUT_SUGMOVIES);
-        m_genresLayout = (LinearLayout) activity.findViewById(R.id.MOVIEDETAIL_GENRE_LINEARLAYOUT_BUTTONS);
-        m_castLayout = (LinearLayout) activity.findViewById(R.id.MOVIEDETAIL_CAST_LINEARLAYOUT);
-        m_textViewLanguage = (TextView) activity.findViewById(R.id.MOVIEDETAIL_INFO_TEXTVIEW_LANGUAGE);
-        m_textViewImdb = (TextView) activity.findViewById(R.id.MOVIEDETAIL_INFO_TEXTVIEW_IMDB);
-        m_textViewMpa = (TextView) activity.findViewById(R.id.MOVIEDETAIL_INFO_TEXTVIEW_MPAARAITING);
-        m_textViewRuntime = (TextView) activity.findViewById(R.id.MOVIEDETAIL_INFO_TEXTVIEW_RUNTIME);
-        m_textViewYear = (TextView)activity.findViewById(R.id.MOVIEDETAIL_INFO_TEXTVIEW_YEAR);
-        m_textViewDesc = (TextView)activity.findViewById(R.id.MOVIEDETAIL_DESC_DESCTEXT);
-        m_imageViewCover = (ImageView) activity.findViewById(R.id.MOVIEDETAIL_INFO_IMAGEVIEW_POSTER);
+        //COLLAPSING TOOLBAR INCLUDE EDILECEK
+        m_collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.ACTIVITY_COLLAPSINGTOOLBAR);
+        m_imageViewBackground = (ImageView) findViewById(R.id.ACTIVITY_COLLAPSINGTOOLBAR_IMAGEVIEW_COVER);
+        m_chipDownload = (Chip) findViewById(R.id.MOVIEDETAIL_CHIP_DOWNLOAD);
+        m_chipImdb = (Chip) findViewById(R.id.MOVIEDETAIL_CHIP_IMDB);
+        m_chipYts = (Chip) findViewById(R.id.MOVIEDETAIL_CHIP_YTS);
+        m_suggestionsLayout = (LinearLayout) findViewById(R.id.MOVIEDETAIL_SUG_LINEARLAYOUT_SUGMOVIES);
+        m_genresLayout = (LinearLayout) findViewById(R.id.MOVIEDETAIL_GENRE_LINEARLAYOUT_BUTTONS);
+        m_castLayout = (LinearLayout) findViewById(R.id.MOVIEDETAIL_CAST_LINEARLAYOUT);
+        m_textViewLanguage = (TextView) findViewById(R.id.MOVIEDETAIL_INFO_TEXTVIEW_LANGUAGE);
+        m_textViewImdb = (TextView) findViewById(R.id.MOVIEDETAIL_INFO_TEXTVIEW_IMDB);
+        m_textViewMpa = (TextView) findViewById(R.id.MOVIEDETAIL_INFO_TEXTVIEW_MPAARAITING);
+        m_textViewRuntime = (TextView) findViewById(R.id.MOVIEDETAIL_INFO_TEXTVIEW_RUNTIME);
+        m_textViewYear = (TextView)findViewById(R.id.MOVIEDETAIL_INFO_TEXTVIEW_YEAR);
+        m_textViewDesc = (TextView)findViewById(R.id.MOVIEDETAIL_DESC_DESCTEXT);
+        m_imageViewCover = (ImageView) findViewById(R.id.MOVIEDETAIL_INFO_IMAGEVIEW_POSTER);
 
     }
 
@@ -135,7 +134,7 @@ public class Fragment2_Details extends Fragment
                 for (int i =0 ; i  < torrents.size() ; i++)
                     str += torrents.get(i).getSize() + " | ";
 
-                Toast.makeText(getContext() , str , Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailActivity.this , str , Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -145,8 +144,8 @@ public class Fragment2_Details extends Fragment
             @Override
             public void onClick(View v)
             {
-                //TODO open chrome url
-                Toast.makeText(getContext(), movie.getUrl() , Toast.LENGTH_LONG).show();
+
+                IntentUtils.openChromeTab(DetailActivity.this , movie.getUrl());
                 Log.d("DEBUG-LINK" , movie.getUrl());
             }
         };
@@ -157,12 +156,11 @@ public class Fragment2_Details extends Fragment
             @Override
             public void onClick(View v)
             {
-                //TODO open chrome url
-                Toast.makeText(getContext(), movie.getImdbCode() , Toast.LENGTH_LONG).show();
+
+                IntentUtils.openChromeTab(DetailActivity.this , movie.getImdbCode());
                 Log.d("DEBUG-LINK" , movie.getImdbCode());
             }
         };
-
 
         m_chipDownload.setOnClickListener(downloadChipListener);
         m_chipYts.setOnClickListener(ytsChipListener);
@@ -174,11 +172,10 @@ public class Fragment2_Details extends Fragment
 
 
 
-    private void setImagesandColors(Movie movie)
+    private void setImagesandColors(final Movie movie)
     {
-        final Movie finalMovie = movie;
 
-        Picasso.with(getContext())
+        Picasso.with(DetailActivity.this)
                 .load(movie.getBackgroundImage())
                 .error(R.drawable.cover_error)
                 .into(m_imageViewBackground);
@@ -189,17 +186,15 @@ public class Fragment2_Details extends Fragment
             public void onClick(View v)
             {
                 //TODO youtube selector acilacak
-                Toast.makeText(getContext(), finalMovie.getYtTrailerLink(), Toast.LENGTH_SHORT).show();
-                Log.d("DEBUG-LINK" , finalMovie.getYtTrailerLink());
+                IntentUtils.watchYoutubeVideo(DetailActivity.this , movie.getYtTrailerCode());
+                Log.d("DEBUG-LINK" , movie.getYtTrailerLink());
             }
         });
 
-        Picasso.with(getContext())
-                .load(finalMovie.getMediumCoverImage())
+        Picasso.with(DetailActivity.this)
+                .load(movie.getMediumCoverImage())
                 .error(R.drawable.cover_error)
-                .resize(100 , 100)
-                .centerInside()
-                .into(m_imageViewCover, PicassoPalette.with(finalMovie.getImdbCode(), m_imageViewCover)
+                .into(m_imageViewCover, PicassoPalette.with(movie.getImdbCode(), m_imageViewCover)
                         .use(PicassoPalette.Profile.VIBRANT)
                         .intoCallBack(new PicassoPalette.CallBack()
                         {
@@ -240,14 +235,14 @@ public class Fragment2_Details extends Fragment
         for (int i = 0; i < genreMax ; i++)
         {
             final int index = i;
-            Button bt = Util.getGenreStyleButton(getContext(), genres.get(i) , getResources().getColor(R.color.colorPrimaryDark));
+            Button bt = Util.getGenreStyleButton(this, genres.get(i) , getResources().getColor(R.color.colorPrimaryDark));
             bt.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
                     //TODO : Genre sorgusu yapilacak list fragment da gosterilecek.
-                    Toast.makeText(getContext() , genres.get(index) , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailActivity.this , genres.get(index) , Toast.LENGTH_SHORT).show();
                 }
             });
             m_genresLayout.addView(bt);
@@ -263,7 +258,7 @@ public class Fragment2_Details extends Fragment
         //TODO restapiye yeni sorgu eklenecek
         // https://yts.ag/api/v2/movie_suggestions.json?movie_id=10
 
-        Context context = getContext();
+        Context context = this;
         int[] covers = {R.drawable.cover1 , R.drawable.cover2 , R.drawable.cover3 , R.drawable.cover4 , R.drawable.cover5
                 , R.drawable.cover6 , R.drawable.cover7 , R.drawable.cover8 , R.drawable.cover9 , R.drawable.cover10};
 
@@ -297,7 +292,7 @@ public class Fragment2_Details extends Fragment
                 @Override
                 public void onClick(View v)
                 {
-                    Toast.makeText(getActivity() , "Intent" + index, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailActivity.this , "Intent" + index, Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -315,104 +310,14 @@ public class Fragment2_Details extends Fragment
         m_castLayout.removeAllViewsInLayout();
         List<Cast> casts = movie.getCast();
 
+        if (casts == null)
+            return;
 
         for (int i = 0; i <  casts.size() ; i++)
         {
-            LinearLayout ln = Util.getCastLayout(getContext(), casts.get(i) );
+            LinearLayout ln = Util.getCastLayout(this, casts.get(i) );
             m_castLayout.addView(ln , i);
         }
     }
 
-
-
-
-    public void setMovieData(Movie movie)
-    {
-        //##################################################################
-        //chip hatasi ve fragment not attached
-        m_movieDetail =movie;
-
-        Log.d("DEBUG" , isAdded()+"");
-//        setAllViews(m_movieDetail);
-
-    }
-
-
-
-    @Override
-    public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState)
-    {
-        Log.d("X" , "onInflate");
-        super.onInflate(context, attrs, savedInstanceState);
-    }
-
-    @Override
-    public void onAttachFragment(Fragment childFragment)
-    {
-        Log.d("X" , "onAttachFragment");
-        super.onAttachFragment(childFragment);
-    }
-
-    @Override
-    public void onAttach(Context context)
-    {
-        Log.d("X" , "onAttach");
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState)
-    {
-        Log.d("X" , "onCreate");
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onStart()
-    {
-        Log.d("X" , "onStart");
-        super.onStart();
-    }
-
-    @Override
-    public void onResume()
-    {
-        Log.d("X" , "onResume");
-        super.onResume();
-    }
-
-    @Override
-    public void onPause()
-    {
-        Log.d("X" , "onPause");
-        super.onPause();
-    }
-
-    @Override
-    public void onStop()
-    {
-        Log.d("X" , "onStop");
-        super.onStop();
-    }
-
-    @Override
-    public void onDestroyView()
-    {
-        Log.d("X" , "onDestroyView");
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onDestroy()
-    {
-        Log.d("X" , "onDestroy");
-        super.onDestroy();
-    }
-
-    @Override
-    public void onDetach()
-    {
-        Log.d("X" , "onDetach");
-        super.onDetach();
-    }
 }

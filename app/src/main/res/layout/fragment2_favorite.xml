@@ -13,12 +13,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/moviedetail_chip_layout"/>
-        <include layout="@layout/moviedetail_info_layout"/>
-        <include layout="@layout/moviedetail_genre_layout"/>
-        <include layout="@layout/moviedetail_desc_layout"/>
-        <include layout="@layout/moviedetail_cast_layout"/>
-        <include layout="@layout/moviedetail_suggestions_layout"/>
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

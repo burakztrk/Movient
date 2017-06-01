@@ -1,4 +1,4 @@
-package layout;
+package com.ozturkburak.movient;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.ozturkburak.Utils.Util;
-import com.ozturkburak.movient.R;
 import com.ozturkburak.movient.controller.IFragmentCommunicator;
 import com.ozturkburak.movient.search.SearchOptions;
 import com.wefika.horizontalpicker.HorizontalPicker;
@@ -70,7 +69,7 @@ public class Fragment3_Search extends Fragment implements View.OnClickListener
         SearchOptions options = new SearchOptions( SearchOptions.LIMIT_DEFAULT , SearchOptions.PAGE_DEFAULT , searchText , m_pickerQuality.getSelectedItem() , m_pickerGenre.getSelectedItem() , m_pickerRaiting.getSelectedItem() , m_pickerSortBy.getSelectedItem() , true) ;
 
         IFragmentCommunicator fragmentCommunicator = (IFragmentCommunicator)getActivity();
-        fragmentCommunicator.sendData(Util.PAGES.LIST , options);
+        fragmentCommunicator.sendData(Util.APP_PAGES.LIST , options);
 
     }
 
