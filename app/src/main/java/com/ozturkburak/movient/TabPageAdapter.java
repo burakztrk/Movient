@@ -27,6 +27,7 @@ public class TabPageAdapter extends FragmentPagerAdapter
     private static ViewPager ms_viewPager;
     private static TabPageAdapter ms_tabPageAdapter;
     private static TabLayout ms_tabLayout;
+
     public TabPageAdapter(FragmentManager fm)
     {
         super(fm);
@@ -92,6 +93,12 @@ public class TabPageAdapter extends FragmentPagerAdapter
     public static Fragment getFragmentbyId(Util.APP_PAGES pages)
     {
         return ms_tabPageAdapter.getItem(pages.getValue());
+    }
+
+
+    public static void closeTab()
+    {
+        ms_tabPageAdapter.getItem(Util.APP_PAGES.LIST.getValue()).onPause();
     }
 
 }

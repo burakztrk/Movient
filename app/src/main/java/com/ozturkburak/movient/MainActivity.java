@@ -1,15 +1,16 @@
 package com.ozturkburak.movient;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.ozturkburak.Utils.IntentUtils;
+import com.ozturkburak.Utils.Util.APP_PAGES;
 import com.ozturkburak.movient.controller.IFragmentCommunicator;
 import com.ozturkburak.movient.search.SearchOptions;
-
-import com.ozturkburak.Utils.Util.*;
 
 
 public class MainActivity extends AppCompatActivity implements IFragmentCommunicator
@@ -60,5 +61,22 @@ public class MainActivity extends AppCompatActivity implements IFragmentCommunic
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (requestCode == IntentUtils.REQUESTCODE_SHOWMOVIEDETAIL)
+        {
+            if (resultCode == IntentUtils.RESULTCODE_NEWSEARCHOPTIONS)
+            {
+                SearchOptions searchOptions = (SearchOptions) data.getSerializableExtra(IntentUtils.BUNDLE_SEARCHOPTIONDATA);
+                Fragment1_List fragment1 = (Fragment1_List) TabPageAdapter.getFragmentbyId(APP_PAGES.LIST);
+                fragment1.setQueryData(searchOptions);
+            }
+
+            TabPageAdapter.setCurrentTab(APP_PAGES.LIST);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

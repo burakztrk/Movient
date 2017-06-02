@@ -2,7 +2,9 @@ package com.ozturkburak.Utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +17,11 @@ import android.widget.Toast;
 
 import com.ozturkburak.movient.R;
 import com.ozturkburak.movient.model.Cast;
+import com.ozturkburak.movient.model.Torrent;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
 /**
  * Created by burak on 4/16/17.
  */
@@ -143,6 +149,33 @@ public class Util
             InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    public static void showTrntDialog(final Activity activity, List<Torrent> list)
+    {
+        String[] torrentName = new String[list.size()];
+
+        for (int i = 0; i < list.size(); i++)
+        {
+            Torrent curTorrent = list.get(i);
+
+            torrentName[i] = new String(String.format("%d. \t %s (%s)", i + 1, curTorrent.getQuality(), curTorrent.getSize()));
+            ;
+        }
+
+        final List<Torrent> finalList = list;
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+        dialogBuilder.setTitle("Choose Quality");
+        dialogBuilder.setItems(torrentName, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int item)
+            {
+                IntentUtils.openChromeTab(activity, finalList.get(item).getUrl());
+            }
+        });
+
+        AlertDialog alertDialogObject = dialogBuilder.create();
+        alertDialogObject.show();
     }
 
 }

@@ -1,7 +1,9 @@
 package com.ozturkburak.movient.resultlist;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -93,6 +95,13 @@ public class PosterAdapter extends RecyclerView.Adapter<PosterAdapter.MyViewHold
             @Override
             public void onClick(View v)
             {
+
+                final ProgressDialog m_ProgressDialog = new ProgressDialog(m_activity);
+                m_ProgressDialog.setMessage("Loading........");
+                m_ProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                m_ProgressDialog.setCancelable(false);
+                m_ProgressDialog.show();
+
                 Call<MovieDetailModel> call = RetrofitClient.getMovieDetailCallBack(movie.getId());
                 Log.d("DEBUG-LINK", call.request().toString());
 
@@ -110,8 +119,11 @@ public class PosterAdapter extends RecyclerView.Adapter<PosterAdapter.MyViewHold
                         Movie responseMovie = response.body().getData().getMovie();
                         Toast.makeText(m_context, responseMovie.getTitleLong() , Toast.LENGTH_SHORT).show();
 
-                        m_activity.startActivity(IntentUtils.movieDetail(m_activity , responseMovie ));
+                        Intent intent = IntentUtils.movieDetailIntent(m_activity, responseMovie);
+                        m_activity.startActivityForResult(intent, IntentUtils.REQUESTCODE_SHOWMOVIEDETAIL);
 
+
+                        m_ProgressDialog.hide();
                     }
 
                     @Override

@@ -1,6 +1,8 @@
 package com.ozturkburak.movient.search;
 
 
+import java.io.Serializable;
+
 /**
  * Created by burak on 4/3/17.
  * TODO: rating textViewinda + olayini yaz
@@ -17,8 +19,10 @@ package com.ozturkburak.movient.search;
  with_rt_ratings=true
  */
 
-public class SearchOptions
+public class SearchOptions implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+
     public static final String  LIMIT_DEFAULT = "25";
     public static final String  PAGE_DEFAULT = "1";
 
@@ -29,7 +33,7 @@ public class SearchOptions
     private boolean m_withRtRating;
     private String m_searchText;
 
-    private Genre m_genre;
+    private String m_genre;
     private Raiting m_rating;
     private SortBy m_sortBy;
     private Quality m_quality;
@@ -40,7 +44,7 @@ public class SearchOptions
         m_limit = LIMIT_DEFAULT;
         m_page = PAGE_DEFAULT;
 
-        m_genre = Genre.ALL;
+        m_genre = Genre.ALL.name();
         m_rating = Raiting.ALL;
         m_sortBy = SortBy.LATEST;
         m_quality = Quality.ALL;
@@ -58,7 +62,7 @@ public class SearchOptions
         m_withRtRating = withRtRating;
 
         m_quality = quality;
-        m_genre = genre;
+        m_genre = genre.name();
         m_rating = raiting;
         m_sortBy = sortBy;
 
@@ -76,18 +80,45 @@ public class SearchOptions
 
     public void setPage(int page){ this.m_page = String.valueOf(page); }
 
+    public void setGenre(Genre genre)
+    {
+        m_genre = genre.name();
+    }
+
+    public void setGenre(String genreText)
+    {
+        m_genre = genreText;
+    }
+
+    public void set_rating(Raiting rating)
+    {
+        m_rating = rating;
+    }
+
+    public void set_rating(String ratingText)
+    {
+        m_rating = Raiting.valueOf(ratingText);
+    }
+
+
     public String getLimit(){ return m_limit;}
     public String getPage(){ return m_page;}
     public String getSearchText(){ return m_searchText;}
 
-    public Genre getGenre(){ return m_genre; }
+    public String getGenre()
+    {
+        return m_genre;
+    }
     public Raiting getRating(){ return m_rating; }
     public SortBy getSortBy(){ return m_sortBy; }
     public Quality getQuality(){ return m_quality; }
 
     public boolean isWithRtRating(){ return m_withRtRating; }
 
-    public String getGenreVal(){ return  m_genre.compareTo(Genre.ALL)== 0 ? null : m_genre.text; }
+    public String getGenreVal()
+    {
+        return m_genre.compareTo(Genre.ALL.name()) == 0 ? null : m_genre;
+    }
     public String getRatingVal(){ return  m_rating.compareTo(Raiting.ALL)== 0 ? null : m_rating.text; }
     public String getSortByVal(){ return  m_sortBy.compareTo(SortBy.LATEST)== 0 ? null : m_sortBy.text; }
     public String getQualityVal(){ return  m_quality.compareTo(Quality.ALL)== 0 ? null : m_quality.text; }

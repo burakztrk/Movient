@@ -14,8 +14,12 @@ import android.widget.Toast;
 
 import com.ozturkburak.Utils.Util;
 import com.ozturkburak.movient.controller.RetrofitClient;
-import com.ozturkburak.movient.model.*;
-import com.ozturkburak.movient.resultlist.*;
+import com.ozturkburak.movient.model.Movie;
+import com.ozturkburak.movient.model.SearchMovieData;
+import com.ozturkburak.movient.model.SearchMovieModel;
+import com.ozturkburak.movient.resultlist.EndlessRecyclerViewScrollListener;
+import com.ozturkburak.movient.resultlist.GridSpacingItemDecoration;
+import com.ozturkburak.movient.resultlist.PosterAdapter;
 import com.ozturkburak.movient.search.SearchOptions;
 
 import java.util.ArrayList;
@@ -51,7 +55,6 @@ public class Fragment1_List extends Fragment
         return inflater.inflate(R.layout.fragment1_list, container, false);
 
     }
-
 
 
     @Override
@@ -117,7 +120,7 @@ public class Fragment1_List extends Fragment
                     return;
                 }
 
-                if (SearchMovieData.getMovies() == null ) //liste sonu
+                if (SearchMovieData.getMovies() == null) //liste sonu
                     return;
 
                 List<Movie> movies = SearchMovieData.getMovies();
@@ -147,4 +150,5 @@ public class Fragment1_List extends Fragment
         ms_searchOptions =  searchOptions;
         Log.d("setQueryData" , String.valueOf(ms_searchOptions.getSearchText()));
     }
+
 }

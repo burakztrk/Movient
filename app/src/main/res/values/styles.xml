@@ -23,14 +23,14 @@
 
     <style name="expandedappbar"
            parent="@android:style/TextAppearance.Medium">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">normal</item>
     </style>
 
     <style name="collapsedappbar"
            parent="@android:style/TextAppearance.Medium">
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">normal</item>
     </style>

@@ -16,7 +16,12 @@ import com.ozturkburak.movient.model.Movie;
 
 public class IntentUtils
 {
-    public static Intent movieDetail(Activity activity , Movie movie)
+
+    public static String BUNDLE_SEARCHOPTIONDATA = "SEARCHOPTIONS";
+    public static int RESULTCODE_NEWSEARCHOPTIONS = 1;
+    public static int REQUESTCODE_SHOWMOVIEDETAIL = 2;
+
+    public static Intent movieDetailIntent(Activity activity, Movie movie)
     {
         Intent intent = new Intent(activity, DetailActivity.class);
         intent.putExtra(Util.MOVIEINFO , movie);

@@ -1,16 +1,15 @@
 package com.ozturkburak.movient;
 
 
-
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -26,6 +25,7 @@ import com.ozturkburak.Utils.Util;
 import com.ozturkburak.movient.model.Cast;
 import com.ozturkburak.movient.model.Movie;
 import com.ozturkburak.movient.model.Torrent;
+import com.ozturkburak.movient.search.SearchOptions;
 import com.robertlevonyan.views.chip.Chip;
 import com.squareup.picasso.Picasso;
 
@@ -41,6 +41,7 @@ public class DetailActivity extends AppCompatActivity
     private ImageView m_imageViewBackground, m_imageViewCover;
     private TextView m_textViewYear , m_textViewImdb , m_textViewRuntime , m_textViewLanguage, m_textViewMpa , m_textViewDesc;
 
+    private ProgressDialog m_ProgressDialog;
     private Movie m_movieDetail;
 
 
@@ -49,6 +50,14 @@ public class DetailActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        m_ProgressDialog = new ProgressDialog(this);
+        m_ProgressDialog.setMessage("Loading........");
+        m_ProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        m_ProgressDialog.setCancelable(false);
+        m_ProgressDialog.show();
+        TabPageAdapter.setCurrentTab(Util.APP_PAGES.SEARCH);
+
 
         Intent intent = getIntent();
         Movie movie = (Movie) intent.getSerializableExtra(Util.MOVIEINFO);
@@ -127,14 +136,15 @@ public class DetailActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                //TODO Dialog ekrani cikacak
-                String str = "";
+                //TODO Custom SnackBar eklenebilir
                 List<Torrent> torrents = movie.getTorrents();
+                if (torrents == null || torrents.size() == 0)
+                {
+                    Toast.makeText(DetailActivity.this, "Torrent info not found", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                for (int i =0 ; i  < torrents.size() ; i++)
-                    str += torrents.get(i).getSize() + " | ";
-
-                Toast.makeText(DetailActivity.this , str , Toast.LENGTH_SHORT).show();
+                Util.showTrntDialog(DetailActivity.this, torrents);
             }
         };
 
@@ -144,7 +154,6 @@ public class DetailActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
                 IntentUtils.openChromeTab(DetailActivity.this , movie.getUrl());
                 Log.d("DEBUG-LINK" , movie.getUrl());
             }
@@ -156,7 +165,6 @@ public class DetailActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
                 IntentUtils.openChromeTab(DetailActivity.this , movie.getImdbCode());
                 Log.d("DEBUG-LINK" , movie.getImdbCode());
             }
@@ -185,7 +193,6 @@ public class DetailActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                //TODO youtube selector acilacak
                 IntentUtils.watchYoutubeVideo(DetailActivity.this , movie.getYtTrailerCode());
                 Log.d("DEBUG-LINK" , movie.getYtTrailerLink());
             }
@@ -222,6 +229,8 @@ public class DetailActivity extends AppCompatActivity
                             }
                         })
                 );
+        m_ProgressDialog.hide();
+
     }
 
 
@@ -235,14 +244,27 @@ public class DetailActivity extends AppCompatActivity
         for (int i = 0; i < genreMax ; i++)
         {
             final int index = i;
-            Button bt = Util.getGenreStyleButton(this, genres.get(i) , getResources().getColor(R.color.colorPrimaryDark));
+            final String genreStr = genres.get(i);
+
+            Button bt = Util.getGenreStyleButton(this, genreStr, getResources().getColor(R.color.colorPrimaryDark));
             bt.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
+                    //TODO Search Options Interface ile startActivityForResult ile cagirilacak main activityden interface cagrilacak
                     //TODO : Genre sorgusu yapilacak list fragment da gosterilecek.
-                    Toast.makeText(DetailActivity.this , genres.get(index) , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailActivity.this, genreStr, Toast.LENGTH_SHORT).show();
+
+                    SearchOptions options = new SearchOptions();
+                    options.setGenre(genreStr);
+                    options.set_rating(SearchOptions.Raiting.R7);
+
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra(IntentUtils.BUNDLE_SEARCHOPTIONDATA, options);
+                    DetailActivity.this.setResult(IntentUtils.RESULTCODE_NEWSEARCHOPTIONS, resultIntent);
+                    DetailActivity.this.finish();
+
                 }
             });
             m_genresLayout.addView(bt);

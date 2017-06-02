@@ -70,7 +70,7 @@ public class Fragment3_Search extends Fragment implements View.OnClickListener
 
         IFragmentCommunicator fragmentCommunicator = (IFragmentCommunicator)getActivity();
         fragmentCommunicator.sendData(Util.APP_PAGES.LIST , options);
-
+        Util.hideKeyboard(getActivity());
     }
 
 }
